@@ -1,0 +1,13 @@
+{
+    "mod_id": "community_fixes",
+    "author": "ShadowDev#6969, supermurloc#1838",
+    "name": "Community Fixes",
+    "description": "Fix stuff",
+    "source": "l",
+    "version": "0.0.1",
+    "dependencies": [],
+    "ksp2_version": {
+        "min": "0.1.0",
+        "max": "0.2.0"
+    }
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityFixes", "CommunityFixes.csproj", "{884FC72A-BC7C-4FDD-85F0-DFE350EE8CEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{884FC72A-BC7C-4FDD-85F0-DFE350EE8CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884FC72A-BC7C-4FDD-85F0-DFE350EE8CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884FC72A-BC7C-4FDD-85F0-DFE350EE8CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884FC72A-BC7C-4FDD-85F0-DFE350EE8CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70CD585E-E40F-4244-89C8-AD4BA19EFBD3}
+	EndGlobalSection
+EndGlobal
