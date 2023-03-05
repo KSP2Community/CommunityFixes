@@ -1,9 +1,7 @@
 using System.Reflection;
 using CommunityFixes.Fix;
-using KSP;
 using SpaceWarp.API.Logging;
 using SpaceWarp.API.Mods;
-using UnityEngine;
 
 namespace CommunityFixes;
 
