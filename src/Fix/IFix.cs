@@ -1,6 +1,4 @@
-﻿using SpaceWarp.API.Logging;
-
-namespace CommunityFixes.Fix;
+﻿namespace CommunityFixes.Fix;
 
 public interface IFix
 {
