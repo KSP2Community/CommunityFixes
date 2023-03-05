@@ -1,10 +1,10 @@
 {
     "mod_id": "community_fixes",
-    "author": "ShadowDev#6969, supermurloc#1838",
+    "author": "ShadowDev#6969, supermurloc#1838 (munix)",
     "name": "Community Fixes",
-    "description": "Fix stuff",
+    "description": "Community project that aims to bring together bug fixes for KSP 2.",
     "source": "https://github.com/Bit-Studios/CommunityFixes",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "dependencies": [],
     "ksp2_version": {
         "min": "0.1.0",

@@ -285,10 +285,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BepInEx.BaseLib" Version="5.4.21" />
     <PackageReference Include="HarmonyX" Version="2.10.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;$(ProjectDir)\dist\community_fixes\bin\&quot;&#xA;xcopy /y &quot;$(ProjectDir)\modinfo.json&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;xcopy /y &quot;$(ProjectDir)\license&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;echo f | xcopy /y &quot;$(ProjectDir)\README.md&quot; &quot;$(ProjectDir)\dist\community_fixes\README.txt&quot;&#xA;" />
+    <Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;xcopy /y &quot;$(ProjectDir)\swinfo.json&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;xcopy /y &quot;$(ProjectDir)\license&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;echo f | xcopy /y &quot;$(ProjectDir)\README.md&quot; &quot;$(ProjectDir)\dist\community_fixes\README.txt&quot;&#xA;" />
   </Target>
 </Project>

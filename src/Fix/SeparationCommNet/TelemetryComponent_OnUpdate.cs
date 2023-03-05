@@ -29,7 +29,7 @@ public class TelemetryComponent_OnUpdate
 
             var comManager = KSP.Game.GameManager.Instance.Game.SessionManager.CommNetManager;
 
-            SeparationCommNetFix.Instance.Logger.Info(
+            SeparationCommNetFix.Instance.Logger.LogInfo(
                 $"Refreshed CommNet from {node.MaxRange}/{node.IsActive} to {maxRange}/{isActive}"
             );
 
@@ -40,7 +40,7 @@ public class TelemetryComponent_OnUpdate
         }
         catch (Exception ex)
         {
-            SeparationCommNetFix.Instance.Logger.Error($"Could not refresh: {ex.Message}");
+            SeparationCommNetFix.Instance.Logger.LogError($"Could not refresh: {ex.Message}");
         }
     }
 }
