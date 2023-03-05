@@ -1,14 +1,21 @@
 using System.Reflection;
+using BepInEx;
 using CommunityFixes.Fix;
-using SpaceWarp.API.Logging;
+using SpaceWarp;
 using SpaceWarp.API.Mods;
 
 namespace CommunityFixes;
 
-[MainMod]
-public class CommunityFixesMod : Mod
+[BepInPlugin(ModGuid, ModName, ModVer)]
+[BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
+public class CommunityFixesMod : BaseSpaceWarpPlugin
 {
+    public const string ModGuid = "com.github.communityfixes";
+    public const string ModName = "Community Fixes";
+    public const string ModVer = "0.1.0";
+    
     private static readonly Assembly _assembly = typeof(CommunityFixesMod).Assembly;
+    private CommunityFixesConfig _config;
     
     public override void OnInitialized()
     {
@@ -19,9 +26,11 @@ public class CommunityFixesMod : Mod
         }
         catch (Exception ex)
         {
-            Logger.Error($"Could not get types: ${ex.Message}");
+            Logger.LogError($"Could not get types: ${ex.Message}");
             return;
         }
+
+        _config = new CommunityFixesConfig(Config);
 
         foreach (var type in types)
         {
@@ -32,26 +41,33 @@ public class CommunityFixesMod : Mod
             
             try
             {
-                LoadFix(type);
-                Logger.Info($"Initialized fix {type.Name}.");
+                var isLoaded = LoadFix(type);
+                Logger.LogInfo($"Fix {type.Name} is " + (isLoaded ? "disabled" : "enabled"));
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error loading fix {type.FullName}: {ex.Message}");
+                Logger.LogError($"Error loading fix {type.FullName}: {ex.Message}");
             }
         }
         
-        Logger.Info($"{Info.name} finished loading.");
+        Logger.LogInfo($"{ModName} finished loading.");
     }
 
-    internal void LoadFix(Type type)
+    internal bool LoadFix(Type type)
     {
+        var fixName = GetFixName(type);
+        
+        if (!_config.LoadConfig(type, fixName))
+        {
+            return false;
+        }
+
         IFix fix;
         if (type.BaseType == typeof(BaseFix))
         {
             var baseFix = gameObject.AddComponent(type) as BaseFix;
             baseFix!.transform.parent = transform;
-            baseFix.Logger = new ModLogger($"{baseFix.Name}");
+            baseFix.Logger = BepInEx.Logging.Logger.CreateLogSource($"CF/{fixName}");
             fix = baseFix;
         }
         else
@@ -65,5 +81,21 @@ public class CommunityFixesMod : Mod
         }
 
         fix.OnInitialized();
+        
+        return true;
+    }
+
+    private static string GetFixName(Type type)
+    {
+        var attributes = Attribute.GetCustomAttributes(type);
+        foreach (var attribute in attributes)
+        {
+            if (attribute is FixAttribute fix)
+            {
+                return fix.Name;
+            }
+        }
+
+        throw new Exception($"The attribute {typeof(FixAttribute).FullName} has to be declared on a fix class.");
     }
 }

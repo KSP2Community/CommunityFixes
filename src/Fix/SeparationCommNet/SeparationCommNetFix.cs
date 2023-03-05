@@ -1,9 +1,8 @@
 namespace CommunityFixes.Fix.SeparationCommNet;
 
+[Fix("Separation CommNet Fix")]
 public class SeparationCommNetFix: BaseFix
 {
-    public override string Name => "Separation CommNet Fix";
-
     public static SeparationCommNetFix Instance;
 
     public SeparationCommNetFix()
