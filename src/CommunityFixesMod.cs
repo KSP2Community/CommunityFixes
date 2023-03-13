@@ -12,7 +12,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
 {
     public const string ModGuid = "com.github.communityfixes";
     public const string ModName = "Community Fixes";
-    public const string ModVer = "0.1.0";
+    public const string ModVer = "0.3.0";
     
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
     private CommunityFixesConfig _config;
