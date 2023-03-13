@@ -4,7 +4,7 @@
     "name": "Community Fixes",
     "description": "Community project that aims to bring together bug fixes for KSP 2.",
     "source": "https://github.com/Bit-Studios/CommunityFixes",
-    "version": "0.1.0",
+    "version": "0.3.0",
     "dependencies": [],
     "ksp2_version": {
         "min": "0.1.0",

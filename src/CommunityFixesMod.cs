@@ -12,9 +12,9 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
 {
     public const string ModGuid = "com.github.communityfixes";
     public const string ModName = "Community Fixes";
-    public const string ModVer = "0.1.0";
+    public const string ModVer = "0.3.0";
     
-    private static readonly Assembly _assembly = typeof(CommunityFixesMod).Assembly;
+    private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
     private CommunityFixesConfig _config;
     
     public override void OnInitialized()
@@ -22,7 +22,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
         Type[] types;
         try
         {
-            types = _assembly.GetTypes();
+            types = Assembly.GetTypes();
         }
         catch (Exception ex)
         {
@@ -53,7 +53,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
         Logger.LogInfo($"{ModName} finished loading.");
     }
 
-    internal bool LoadFix(Type type)
+    private bool LoadFix(Type type)
     {
         var fixName = GetFixName(type);
         
@@ -72,7 +72,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
         }
         else
         {
-            fix = _assembly.CreateInstance(type.FullName!) as IFix;
+            fix = Assembly.CreateInstance(type.FullName!) as IFix;
         }
 
         if (fix == null)
