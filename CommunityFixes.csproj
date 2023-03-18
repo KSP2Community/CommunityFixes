@@ -9,6 +9,7 @@
       https://api.nuget.org/v3/index.json;
       https://nuget.bepinex.dev/v3/index.json
     </RestoreAdditionalProjectSources>
+    <ModId Condition="'$(ModId)'==''">community_fixes</ModId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
@@ -27,6 +28,6 @@
     <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;xcopy /y &quot;$(ProjectDir)\swinfo.json&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;xcopy /y &quot;$(ProjectDir)\license&quot; &quot;$(ProjectDir)\dist\community_fixes\&quot;&#xA;echo f | xcopy /y &quot;$(ProjectDir)\README.md&quot; &quot;$(ProjectDir)\dist\community_fixes\README.txt&quot;&#xA;" />
+    <Exec Command="xcopy /y &quot;$(ProjectDir)swinfo.json&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\&quot;&#xA;echo f | xcopy /y &quot;$(TargetPath)&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\$(ModId).dll&quot;&#xA;if $(ConfigurationName) == Debug echo f | xcopy /y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\$(ModId).pdb&quot;&#xA;xcopy /y &quot;$(ProjectDir)LICENSE&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\&quot;&#xA;echo f | xcopy /y &quot;$(ProjectDir)README.md&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\README.txt&quot;" />
   </Target>
 </Project>
