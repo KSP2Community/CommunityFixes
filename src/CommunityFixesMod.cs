@@ -42,7 +42,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
             try
             {
                 var isLoaded = LoadFix(type);
-                Logger.LogInfo($"Fix {type.Name} is " + (isLoaded ? "disabled" : "enabled"));
+                Logger.LogInfo($"Fix {type.Name} is " + (isLoaded ? "enabled" : "disabled"));
             }
             catch (Exception ex)
             {
