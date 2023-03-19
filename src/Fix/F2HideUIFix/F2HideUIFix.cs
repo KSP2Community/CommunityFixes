@@ -1,5 +1,6 @@
 using HarmonyLib;
 using KSP.Game;
+using KSP.Messages;
 using KSP.UI.Flight;
 
 namespace CommunityFixes.Fix.F2HideUIFix;
@@ -10,6 +11,14 @@ public class F2HideUIFix: BaseFix
     public override void OnInitialized()
     {
         _harmony.PatchAll(typeof(F2HideUIFix));
+        Game.Messages.Subscribe<GameStateEnteredMessage>(msg =>
+        {
+            var message = (GameStateEnteredMessage)msg;
+            if (message.StateBeingEntered != GameState.FlightView && message.StateBeingEntered != GameState.Map3DView)
+            {
+                Game.UI.GetRootCanvas().worldCamera.enabled = true;
+            }
+        });
     }
 
     [HarmonyPatch(typeof(UIFlightHud), nameof(UIFlightHud.OnFlightHudCanvasActiveChanged))]
