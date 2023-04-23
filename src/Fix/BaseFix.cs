@@ -4,17 +4,18 @@ using KSP.Game;
 
 namespace CommunityFixes.Fix;
 
-public abstract class BaseFix : KerbalMonoBehaviour, IFix
+public abstract class BaseFix : KerbalMonoBehaviour
 {
     public virtual void OnInitialized()
     {
     }
 
-    protected Harmony _harmony;
-    internal ManualLogSource Logger { get; set; }
+    protected Harmony HarmonyInstance { get; }
+    internal ManualLogSource Logger { get; }
 
     protected BaseFix()
     {
-        _harmony = new Harmony(GetType().FullName);
+        Logger = BepInEx.Logging.Logger.CreateLogSource($"CF/{GetType().Name}");
+        HarmonyInstance = new Harmony(GetType().FullName);
     }
 }

@@ -6,8 +6,7 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>true</ImplicitUsings>
     <RestoreAdditionalProjectSources>
-      https://api.nuget.org/v3/index.json;
-      https://nuget.bepinex.dev/v3/index.json
+      https://nuget.spacewarp.org/v3/index.json
     </RestoreAdditionalProjectSources>
     <ModId Condition="'$(ModId)'==''">community_fixes</ModId>
   </PropertyGroup>
@@ -24,7 +23,7 @@
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="HarmonyX" Version="2.10.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="SpaceWarp" Version="0.4.0" />
+    <PackageReference Include="SpaceWarp" Version="1.1.1" />
     <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
