@@ -4,7 +4,7 @@ using KSP.Game;
 
 namespace CommunityFixes.Fix;
 
-public abstract class BaseFix : KerbalMonoBehaviour, IFix
+public abstract class BaseFix : KerbalMonoBehaviour
 {
     public virtual void OnInitialized()
     {

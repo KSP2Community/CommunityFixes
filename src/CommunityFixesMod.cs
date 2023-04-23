@@ -13,10 +13,12 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
     public const string ModGuid = "com.github.communityfixes";
     public const string ModName = "Community Fixes";
     public const string ModVer = "0.5.0";
-    
+
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
     private CommunityFixesConfig _config;
-    
+
+    private readonly List<BaseFix> _fixes = new();
+
     private void Awake()
     {
         Type[] types;
@@ -34,11 +36,11 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
 
         foreach (var type in types)
         {
-            if (type.IsAbstract || !type.GetInterfaces().Contains(typeof(IFix)))
+            if (type.IsAbstract || !HasFixType(type))
             {
                 continue;
             }
-            
+
             try
             {
                 var isLoaded = LoadFix(type);
@@ -46,41 +48,39 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
             }
             catch (Exception ex)
             {
-                Logger.LogError($"Error loading fix {type.FullName}: {ex.Message}");
+                Logger.LogError($"Error loading fix {type.FullName}: {ex}");
             }
         }
-        
+
         Logger.LogInfo($"{ModName} finished loading.");
+    }
+
+    public override void OnInitialized()
+    {
+        foreach (var fix in _fixes)
+        {
+            fix.OnInitialized();
+        }
     }
 
     private bool LoadFix(Type type)
     {
         var fixName = GetFixName(type);
-        
+
         if (!_config.LoadConfig(type, fixName))
         {
             return false;
         }
 
-        IFix fix;
-        if (type.BaseType == typeof(BaseFix))
-        {
-            var baseFix = gameObject.AddComponent(type) as BaseFix;
-            baseFix!.transform.parent = transform;
-            fix = baseFix;
-        }
-        else
-        {
-            fix = Assembly.CreateInstance(type.FullName!) as IFix;
-        }
-
+        var fix = gameObject.AddComponent(type) as BaseFix;
         if (fix == null)
         {
             throw new Exception($"Could not instantiate fix {type.Name}.");
         }
 
-        fix.OnInitialized();
-        
+        fix.transform.parent = transform;
+        _fixes.Add(fix);
+
         return true;
     }
 
@@ -96,5 +96,26 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
         }
 
         throw new Exception($"The attribute {typeof(FixAttribute).FullName} has to be declared on a fix class.");
+    }
+
+    private static bool HasFixType(Type type)
+    {
+        if (type == null)
+        {
+            return false;
+        }
+
+        // return all inherited types
+        var currentBaseType = type.BaseType;
+        while (currentBaseType != null)
+        {
+            if (currentBaseType == typeof(BaseFix))
+            {
+                return true;
+            }
+            currentBaseType = currentBaseType.BaseType;
+        }
+
+        return false;
     }
 }
