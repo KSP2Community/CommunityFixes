@@ -11,7 +11,7 @@ public abstract class BaseFix : KerbalMonoBehaviour, IFix
     }
 
     protected Harmony HarmonyInstance { get; }
-    protected ManualLogSource Logger { get; }
+    internal ManualLogSource Logger { get; }
 
     protected BaseFix()
     {
