@@ -10,11 +10,12 @@ public abstract class BaseFix : KerbalMonoBehaviour, IFix
     {
     }
 
-    protected Harmony _harmony;
-    internal ManualLogSource Logger { get; set; }
+    protected Harmony HarmonyInstance { get; }
+    protected ManualLogSource Logger { get; }
 
     protected BaseFix()
     {
-        _harmony = new Harmony(GetType().FullName);
+        Logger = BepInEx.Logging.Logger.CreateLogSource($"CF/{GetType().Name}");
+        HarmonyInstance = new Harmony(GetType().FullName);
     }
 }

@@ -17,7 +17,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
     private CommunityFixesConfig _config;
     
-    public override void OnInitialized()
+    private void Awake()
     {
         Type[] types;
         try
@@ -67,7 +67,6 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
         {
             var baseFix = gameObject.AddComponent(type) as BaseFix;
             baseFix!.transform.parent = transform;
-            baseFix.Logger = BepInEx.Logging.Logger.CreateLogSource($"CF/{fixName}");
             fix = baseFix;
         }
         else

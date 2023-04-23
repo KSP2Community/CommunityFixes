@@ -12,6 +12,6 @@ public class SeparationCommNetFix: BaseFix
 
     public override void OnInitialized()
     {
-        _harmony.PatchAll(typeof(TelemetryComponent_OnUpdate));
+        HarmonyInstance.PatchAll(typeof(TelemetryComponent_OnUpdate));
     }
 }

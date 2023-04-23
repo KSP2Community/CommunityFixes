@@ -10,7 +10,7 @@ public class F2HideUIFix: BaseFix
 {
     public override void OnInitialized()
     {
-        _harmony.PatchAll(typeof(F2HideUIFix));
+        HarmonyInstance.PatchAll(typeof(F2HideUIFix));
         Game.Messages.Subscribe<GameStateEnteredMessage>(msg =>
         {
             var message = (GameStateEnteredMessage)msg;

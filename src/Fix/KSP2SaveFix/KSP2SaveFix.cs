@@ -14,6 +14,6 @@ public class KSP2SaveFix: BaseFix
     }
     public override void OnInitialized()
     {
-        _harmony.PatchAll(typeof(KSP2SaveFix_GetState));
+        HarmonyInstance.PatchAll(typeof(KSP2SaveFix_GetState));
     }
 }
