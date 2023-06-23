@@ -1,6 +1,7 @@
 using System.Reflection;
 using BepInEx;
 using CommunityFixes.Fix;
+using JetBrains.Annotations;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
 
@@ -10,9 +11,9 @@ namespace CommunityFixes;
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class CommunityFixesMod : BaseSpaceWarpPlugin
 {
-    public const string ModGuid = "com.github.communityfixes";
-    public const string ModName = "Community Fixes";
-    public const string ModVer = "0.5.0";
+    [PublicAPI] public const string ModGuid = "CommunityFixes";
+    [PublicAPI] public const string ModName = "Community Fixes";
+    [PublicAPI] public const string ModVer = "0.6.0";
 
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
     private CommunityFixesConfig _config;
@@ -113,6 +114,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
             {
                 return true;
             }
+
             currentBaseType = currentBaseType.BaseType;
         }
 
