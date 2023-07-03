@@ -5,15 +5,14 @@ namespace CommunityFixes;
 public class CommunityFixesConfig
 {
     private const string TogglesSection = "Toggle fixes";
-    
-    private Dictionary<Type, ConfigEntry<bool>> _fixesEnabled = new();
-    private ConfigFile _configFile;
 
-    public CommunityFixesConfig(ConfigFile configFileFile)
+    private readonly Dictionary<Type, ConfigEntry<bool>> _fixesEnabled = new();
+    internal ConfigFile File { get; }
+
+    public CommunityFixesConfig(ConfigFile fileFileFile)
     {
-        _configFile = configFileFile;
+        File = fileFileFile;
     }
-
 
     public bool LoadConfig(Type type, string name)
     {
@@ -24,7 +23,7 @@ public class CommunityFixesConfig
         }
 
         // Otherwise create a new config entry for the fix class and return its default value (true)
-        var configEntry = _configFile.Bind(TogglesSection, type.Name, true, name);
+        var configEntry = File.Bind(TogglesSection, type.Name, true, name);
         _fixesEnabled.Add(type, configEntry);
         return configEntry.Value;
     }
