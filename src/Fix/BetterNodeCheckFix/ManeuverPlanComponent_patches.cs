@@ -1,10 +1,9 @@
 ﻿using HarmonyLib;
 using KSP.Sim.impl;
 using KSP.Sim.Maneuver;
-using CommunityFixes;
 using KSP.Game;
 
-namespace CommunityFixes.Fix.AddNodeFix;
+namespace CommunityFixes.Fix.BetterNodeCheckFix;
 
 public class ManeuverPlanComponent_patches
 {
@@ -21,8 +20,9 @@ public class ManeuverPlanComponent_patches
     // Assume we can afford the whole requested burn (no reduction)
     __result = true;
 
-    if (CommunityFixesMod._allowAllNodes.Value)
+    if (BetterNodeCheckFix._allowAllNodes.Value)
     {
+      BetterNodeCheckFix.Instance.Logger.LogInfo($"BetterEnoughDeltaVToAddNode called: returning {__result}: Allow any node.");
       return false;
     }
 
@@ -38,9 +38,9 @@ public class ManeuverPlanComponent_patches
     double remainingDeltaV = __instance.SimulationObject.VesselDeltaV.TotalDeltaVActual + RcsDeltaV - totalDeltaVNeeded;
 
     // This will prevent the creation of the node if we don't have enough gas for it
-    // __result remainingDeltaV > 0.001;
+    __result = remainingDeltaV > 0.001;
 
-    AddNodeFix.Instance.Logger.LogInfo($"BetterEnoughDeltaVToAddNode called: returning {__result}: remainingDeltaV = {remainingDeltaV} m/s, RcsDeltaV = {RcsDeltaV} m/s, totalDeltaVNeeded = {totalDeltaVNeeded} m/s");
+    BetterNodeCheckFix.Instance.Logger.LogInfo($"BetterEnoughDeltaVToAddNode called: returning {__result}: remainingDeltaV = {remainingDeltaV} m/s, RcsDeltaV = {RcsDeltaV} m/s, totalDeltaVNeeded = {totalDeltaVNeeded} m/s");
 
     // Returning true indicates the patched method should be called after this, and false indicates it should not be called
     return false;
@@ -59,6 +59,11 @@ public class ManeuverPlanComponent_patches
     reducedBurnVectorChange = node.BurnVector;
     __result = true;
 
+    if (BetterNodeCheckFix._allowAllNodes.Value)
+    {
+      BetterNodeCheckFix.Instance.Logger.LogInfo($"BetterEnoughDeltaVToAddNodeOnRebuild called: returning {__result}: Allow any node.");
+      return false;
+    }
     // Get the vessel component for this SimulationObject
     VesselComponent thisVessel = __instance.SimulationObject.Vessel;
 
@@ -84,7 +89,7 @@ public class ManeuverPlanComponent_patches
       __result = true;
     }
 
-    AddNodeFix.Instance.Logger.LogInfo($"BetterEnoughDeltaVToAddNodeOnRebuild called: returning {__result}: remainingDeltaV = {remainingDeltaV} m/s, RcsDeltaV = {RcsDeltaV} m/s, totalDeltaVNeeded = {totalDeltaVNeeded} m/s");
+    BetterNodeCheckFix.Instance.Logger.LogInfo($"BetterEnoughDeltaVToAddNodeOnRebuild called: returning {__result}: remainingDeltaV = {remainingDeltaV} m/s, RcsDeltaV = {RcsDeltaV} m/s, totalDeltaVNeeded = {totalDeltaVNeeded} m/s");
 
     // Returning true indicates the patched method should be called after this, and false indicates it should not be called
     return false;
