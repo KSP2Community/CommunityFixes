@@ -2,7 +2,7 @@
 This project aims to bring together community bug fixes for Kerbal Space Program 2 in one centralized place.
 
 ## Compatibility
-- Tested with Kerbal Space Program 2 v0.1.3.0.24321
+- Tested with Kerbal Space Program 2 v0.1.3.1.24603
 - Requires **[SpaceWarp 1.3+](https://github.com/SpaceWarpDev/SpaceWarp/releases/)**
 
 ## Implemented fixes
@@ -10,6 +10,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **KSP 2 Save Fix** by [jayouimet](https://github.com/jayouimet) - Replaces the Control Owner Part to the first available Command module or to the Root part if not found when it is set to null.
 - **Vessel Landed State Fix*** by [munix](https://github.com/jan-bures) - Checks if the vessel's state is Landed when not actually near the ground and resets it. <br> _*This fix is experimental and untested for now - if you are experiencing the bug with its fix enabled, please create an issue [here](https://github.com/Bit-Studios/CommunityFixes/issues)._
 - **Velocity Display Precision Fix** by [arthomnix](https://github.com/arthomnix) - Fixes the digit after the decimal point on the navball velocity display always being zero at velocities above 100m/s.
+- **Better Node Check Fix** by [schlosrat](https://github.com/schlosrat) - Fixes not being able to create maneuver nodes when there isn't enough engine ∆v. Can be configured to either always allow creating nodes, or only with enough combined engine and RCS ∆v.
 
 ## Planned fixes
 To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/Bit-Studios/CommunityFixes/issues) on the project's GitHub.
@@ -20,8 +21,9 @@ To see what fixes are planned to be implemented, you can visit the [Issues page]
 1. Use [CKAN](https://github.com/KSP-CKAN/CKAN/releases/latest) to download SpaceWarp and Community Fixes.
 
 ### Manual
-1. Download and extract [SpaceWarp](https://github.com/SpaceWarpDev/SpaceWarp/releases) into your game folder.
-2. Download and extract this mod into the game folder. If done correctly, you should have the following folder structure: `<KSP Folder>/BepInEx/plugins/community_fixes`.
+1. Download and extract [UITK for KSP 2](https://github.com/jan-bures/UitkForKsp2/releases) into your game folder.
+2. Download and extract [SpaceWarp](https://github.com/SpaceWarpDev/SpaceWarp/releases) into your game folder.
+3. Download and extract this mod into the game folder. If done correctly, you should have the following folder structure: `<KSP Folder>/BepInEx/plugins/CommunityFixes`.
 
 ## Configuration
 If you want to toggle any of the included fixes off, you can do so in game: `Main menu` -> `Mods` -> `Open Configuration Manager` -> `Community Fixes`. The changes will apply after restarting the game.
