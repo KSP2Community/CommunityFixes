@@ -18,8 +18,9 @@ public class BetterNodeCheckFix : BaseFix
   public override void OnInitialized()
   {
     // Community Fix config parameters specific to this fix
-    _allowAllNodes = CommunityFixesMod.Config.File.Bind<bool>("Better Node Check Fix", "Allow All", false, "If enabled, all new maneuver nodes are allowed. If disabled new and rebuilt nodes are limited by the combined engine and RCS DeltaV");
+    // _allowAllNodes = CommunityFixesMod.Config.File.Bind<bool>("Better Node Check Fix", "Allow All", false, "If enabled, all new maneuver nodes are allowed. If disabled new and rebuilt nodes are limited by the combined engine and RCS DeltaV");
 
-    HarmonyInstance.PatchAll(typeof(ManeuverPlanComponent_patches));
+    // HarmonyInstance.PatchAll(typeof(BetterNodeCheckPatches));
+    HarmonyInstance.PatchAll(typeof(STFUPatches));
   }
 }
