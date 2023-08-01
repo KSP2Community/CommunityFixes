@@ -10,7 +10,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **KSP 2 Save Fix** by [jayouimet](https://github.com/jayouimet) - Replaces the Control Owner Part to the first available Command module or to the Root part if not found when it is set to null.
 - **Vessel Landed State Fix*** by [munix](https://github.com/jan-bures) - Checks if the vessel's state is Landed when not actually near the ground and resets it. <br> _*This fix is experimental and untested for now - if you are experiencing the bug with its fix enabled, please create an issue [here](https://github.com/Bit-Studios/CommunityFixes/issues)._
 - **Velocity Display Precision Fix** by [arthomnix](https://github.com/arthomnix) - Fixes the digit after the decimal point on the navball velocity display always being zero at velocities above 100m/s.
-- **Better Node Check Fix** by [schlosrat](https://github.com/schlosrat) - Fixes not being able to create maneuver nodes when there isn't enough engine ∆v. Can be configured to either always allow creating nodes, or only with enough combined engine and RCS ∆v.
+- **Suppress Transmissions Falsely Urgent Fix** by [schlosrat](https://github.com/schlosrat) - Suppresses unhelpful map view log messages.
 
 ## Planned fixes
 To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/Bit-Studios/CommunityFixes/issues) on the project's GitHub.

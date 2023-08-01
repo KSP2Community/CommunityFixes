@@ -3,7 +3,7 @@ using CommunityFixes;
 
 namespace CommunityFixes.Fix.STFUFix;
 
-[Fix("Suspress bogus and unhelpful log messages")]
+[Fix("Suppress bogus and unhelpful log messages")]
 public class SuppressTransmissionsFalselyUrgentFix : BaseFix
 {
     public static SuppressTransmissionsFalselyUrgentFix Instance;
