@@ -8,7 +8,7 @@
     <RestoreAdditionalProjectSources>
       https://nuget.spacewarp.org/v3/index.json
     </RestoreAdditionalProjectSources>
-    <ModId Condition="'$(ModId)'==''">CommunityFixes</ModId>
+    <NoWarn>CS0436</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
@@ -21,6 +21,6 @@
     <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y &quot;$(ProjectDir)swinfo.json&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\&quot;&#xA;echo f | xcopy /y &quot;$(TargetPath)&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\$(ModId).dll&quot;&#xA;if $(ConfigurationName) == Debug echo f | xcopy /y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\$(ModId).pdb&quot;&#xA;xcopy /y &quot;$(ProjectDir)LICENSE&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\&quot;&#xA;echo f | xcopy /y &quot;$(ProjectDir)README.md&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ModId)\README.txt&quot;" />
+    <Exec Command="xcopy /y &quot;$(ProjectDir)swinfo.json&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\&quot;&#xA;echo f | xcopy /y &quot;$(TargetPath)&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\$(ProjectName).dll&quot;&#xA;if $(ConfigurationName) == Debug echo f | xcopy /y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\$(ProjectName).pdb&quot;&#xA;xcopy /y &quot;$(ProjectDir)LICENSE&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\&quot;&#xA;echo f | xcopy /y &quot;$(ProjectDir)README.md&quot; &quot;$(ProjectDir)$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\README.txt&quot;" />
   </Target>
 </Project>

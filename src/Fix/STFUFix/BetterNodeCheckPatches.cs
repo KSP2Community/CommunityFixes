@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿/*
+using HarmonyLib;
 using KSP.Game;
 using KSP.Messages;
 using KSP.Sim;
@@ -474,3 +475,4 @@ public class BetterNodeCheckPatches
         return false;
     }
 }
+*/

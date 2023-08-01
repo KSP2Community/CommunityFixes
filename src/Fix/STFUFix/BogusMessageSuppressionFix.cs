@@ -9,7 +9,7 @@ public class SuppressTransmissionsFalselyUrgentFix : BaseFix
     public static SuppressTransmissionsFalselyUrgentFix Instance;
 
     // Community Fix config parameters specific to this fix
-    internal static ConfigEntry<bool> _allowAllNodes;
+    // internal static ConfigEntry<bool> _allowAllNodes;
 
     public SuppressTransmissionsFalselyUrgentFix()
     {
