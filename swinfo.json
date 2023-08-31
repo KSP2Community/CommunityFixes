@@ -4,9 +4,9 @@
     "author": "Community Fixes for KSP 2 Contributors",
     "name": "Community Fixes",
     "description": "Community project that aims to bring together bug fixes for KSP 2.",
-    "source": "https://github.com/Bit-Studios/CommunityFixes",
+    "source": "https://github.com/KSP2Community/CommunityFixes",
     "version": "0.7.0",
-    "version_check": "https://raw.githubusercontent.com/Bit-Studios/CommunityFixes/main/swinfo.json",
+    "version_check": "https://raw.githubusercontent.com/KSP2Community/CommunityFixes/main/swinfo.json",
     "dependencies": [
         {
             "id": "com.github.x606.spacewarp",
