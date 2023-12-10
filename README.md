@@ -2,8 +2,8 @@
 This project aims to bring together community bug fixes for Kerbal Space Program 2 in one centralized place.
 
 ## Compatibility
-- Tested with Kerbal Space Program 2 v0.1.3.1.24603
-- Requires **[SpaceWarp 1.3+](https://github.com/SpaceWarpDev/SpaceWarp/releases/)**
+- Tested with Kerbal Space Program 2 v0.1.5.0.28833
+- Requires **[SpaceWarp 1.5.3+](https://github.com/SpaceWarpDev/SpaceWarp/releases/)**
 
 ## Implemented fixes
 - **Separation CommNet Fix** by [munix](https://github.com/jan-bures) - Fixes CommNet disconnecting after separating two controllable vessels.
