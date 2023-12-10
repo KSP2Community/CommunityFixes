@@ -7,13 +7,13 @@ using SpaceWarp.API.Mods;
 
 namespace CommunityFixes;
 
-[BepInPlugin(ModGuid, ModName, ModVer)]
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class CommunityFixesMod : BaseSpaceWarpPlugin
 {
-    [PublicAPI] public const string ModGuid = "CommunityFixes";
-    [PublicAPI] public const string ModName = "Community Fixes";
-    [PublicAPI] public const string ModVer = "0.7.0";
+    [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
+    [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
+    [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
     internal new static CommunityFixesConfig Config;

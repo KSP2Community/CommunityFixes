@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using CommunityFixes.Fix.SeparationCommNet;
-
-namespace CommunityFixes.Fix.KSP2SaveFix;
+﻿namespace CommunityFixes.Fix.KSP2SaveFix;
 
 [Fix("KSP 2 Save Fix")]
 public class KSP2SaveFix: BaseFix

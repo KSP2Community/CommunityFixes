@@ -1,4 +1,3 @@
-using KSP.Game;
 using KSP.Sim.impl;
 
 namespace CommunityFixes.Fix.VesselLandedState;
@@ -16,6 +15,6 @@ public class VesselLandedStateFix: BaseFix
             {
                 vessel.Landed = false;
             }
-        }  
+        }
     }
 }

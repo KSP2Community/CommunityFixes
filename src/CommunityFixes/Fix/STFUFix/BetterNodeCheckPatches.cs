@@ -10,7 +10,7 @@ using KSP.Sim.ResourceSystem;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace CommunityFixes.Fix.BetterNodeCheckFix;
+namespace CommunityFixes.Fix.STFUFix;
 
 public class BetterNodeCheckPatches
 {

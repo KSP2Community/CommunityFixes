@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using JetBrains.Annotations;
 using KSP.Sim.impl;
 
 namespace CommunityFixes.Fix.SeparationCommNet;
@@ -6,6 +7,7 @@ namespace CommunityFixes.Fix.SeparationCommNet;
 [HarmonyPatch(typeof(TelemetryComponent), nameof(TelemetryComponent.OnUpdate))]
 public class TelemetryComponent_OnUpdate
 {
+    [UsedImplicitly]
     public static void Prefix(TelemetryComponent __instance)
     {
         if (__instance.SimulationObject?.Vessel is null)
