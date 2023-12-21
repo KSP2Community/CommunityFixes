@@ -5,17 +5,17 @@
   "name": "Community Fixes",
   "description": "Community project that aims to bring together bug fixes for KSP 2.",
   "source": "https://github.com/KSP2Community/CommunityFixes",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "version_check": "https://raw.githubusercontent.com/KSP2Community/CommunityFixes/main/plugin_template/swinfo.json",
   "ksp2_version": {
-    "min": "0.1.5",
+    "min": "0.2.0",
     "max": "*"
   },
   "dependencies": [
     {
       "id": "com.github.x606.spacewarp",
       "version": {
-        "min": "1.5.2",
+        "min": "1.6.0",
         "max": "*"
       }
     }
