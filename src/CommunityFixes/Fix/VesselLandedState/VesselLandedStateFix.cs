@@ -8,10 +8,10 @@ public class VesselLandedStateFix: BaseFix
     private void LateUpdate()
     {
         var gameStateConfiguration = Game?.GlobalGameState?.GetGameState();
-        if (gameStateConfiguration != null && gameStateConfiguration.IsFlightMode)
+        if (gameStateConfiguration is { IsFlightMode: true })
         {
             var vessel = Game?.ViewController?.GetActiveSimVessel();
-            if (vessel != null && vessel.Situation == VesselSituations.Landed && vessel.AltitudeFromTerrain > 50)
+            if (vessel is { Situation: VesselSituations.Landed, AltitudeFromTerrain: > 50, SrfSpeedMagnitude: > 5 })
             {
                 vessel.Landed = false;
             }
