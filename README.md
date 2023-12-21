@@ -7,7 +7,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 
 ## Implemented fixes
 - **KSP 2 Save Fix** by [jayouimet](https://github.com/jayouimet) - Replaces the Control Owner Part to the first available Command module or to the Root part if not found when it is set to null.
-- **Vessel Landed State Fix*** by [munix](https://github.com/jan-bures) - Checks if the vessel's state is Landed when not actually near the ground and resets it. Should fix [this persistent bug](https://forum.kerbalspaceprogram.com/topic/220260-incorrect-landed-state-causing-lack-of-trajectory-lines/).
+- **Vessel Landed State Fix** by [munix](https://github.com/jan-bures) - Checks if the vessel's state is Landed when not actually near the ground and resets it. Should fix [this persistent bug](https://forum.kerbalspaceprogram.com/topic/220260-incorrect-landed-state-causing-lack-of-trajectory-lines/).
 - **Velocity Display Precision Fix** by [arthomnix](https://github.com/arthomnix) - Fixes the digit after the decimal point on the navball velocity display always being zero at velocities above 100m/s.
 - **Suppress Transmissions Falsely Urgent Fix** by [schlosrat](https://github.com/schlosrat) - Suppresses unhelpful map view log messages.
 - **VAB Redo Tooltip Fix** by [coldrifting](https://github.com/coldrifting) - Fixes the VAB Redo button tooltip not being at the same height as the button.
