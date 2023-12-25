@@ -1,4 +1,4 @@
-name: Publish NuGet and upload release
+name: Upload release
 
 on:
   release:
