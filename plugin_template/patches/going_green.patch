@@ -1,7 +1,0 @@
-:missions #KSP2Mission_Secondary_Kerbin_Experiment > missionStages > _0 > ConditionSet > PropertyCondition {
-  @if ($$Inputstring == "collector_1v_science_general") {
-    TestWatchedstring: true;
-  }
-
-  RequireCurrentValue: true;
-}
