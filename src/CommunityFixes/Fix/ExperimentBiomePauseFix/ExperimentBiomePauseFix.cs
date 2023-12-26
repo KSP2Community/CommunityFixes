@@ -13,7 +13,7 @@ public class ExperimentBiomePauseFix : BaseFix
 
     // This fix makes assumptions about the game's code and reads/writes private state, which can end up in save files.
     // In order to avoid accidentally breaking anything, we only apply the patch to known-broken versions of the game.
-    public static HashSet<string> KNOWN_BROKEN_VERSIONS = ["0.2.0.0.30291"];
+    public static readonly HashSet<string> KNOWN_BROKEN_VERSIONS = new() { "0.2.0.0.30291" };
     public static string GameVersion = typeof(VersionID).GetField("VERSION_TEXT", BindingFlags.Static | BindingFlags.Public)
             ?.GetValue(null) as string;
 
@@ -57,7 +57,7 @@ public class ExperimentBiomePauseFix : BaseFix
         );
 
         bool safeToSkip = true;
-        List<string> newRegions = [];
+        var newRegions = new List<string>();
         for (int i = 0; i < ___dataScienceExperiment.ExperimentStandings.Count; i++)
         {
             var standing = ___dataScienceExperiment.ExperimentStandings[i];
