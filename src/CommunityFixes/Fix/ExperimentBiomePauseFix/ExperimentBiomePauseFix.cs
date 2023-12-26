@@ -13,14 +13,15 @@ public class ExperimentBiomePauseFix : BaseFix
 
     // This fix makes assumptions about the game's code and reads/writes private state, which can end up in save files.
     // In order to avoid accidentally breaking anything, we only apply the patch to known-broken versions of the game.
-    public static readonly HashSet<string> KNOWN_BROKEN_VERSIONS = new() { "0.2.0.0.30291" };
-    public static string GameVersion = typeof(VersionID).GetField("VERSION_TEXT", BindingFlags.Static | BindingFlags.Public)
-            ?.GetValue(null) as string;
+    public static readonly HashSet<string> KnownBrokenVersions = new() { "0.2.0.0.30291" };
+    public static string GameVersion = typeof(VersionID)
+        .GetField("VERSION_TEXT", BindingFlags.Static | BindingFlags.Public)
+        ?.GetValue(null) as string;
 
     public override void OnInitialized()
     {
         Instance = this;
-        if (KNOWN_BROKEN_VERSIONS.Contains(GameVersion))
+        if (KnownBrokenVersions.Contains(GameVersion))
         {
             HarmonyInstance.PatchAll(typeof(ExperimentBiomePauseFix));
         }
@@ -39,12 +40,16 @@ public class ExperimentBiomePauseFix : BaseFix
     [HarmonyPatch(typeof(PartComponentModule_ScienceExperiment), "RefreshLocationsValidity")]
     [HarmonyPrefix]
     public static bool RefreshLocationsValidityPrefix(
+        // ReSharper disable once InconsistentNaming
         ref VesselComponent ____vesselComponent,
+        // ReSharper disable once InconsistentNaming
         ref ResearchLocation ____currentLocation,
+        // ReSharper disable once InconsistentNaming
         ref Data_ScienceExperiment ___dataScienceExperiment
     )
     {
-        if (____vesselComponent?.mainBody == null || ____vesselComponent?.VesselScienceRegionSituation.ResearchLocation == null)
+        if (____vesselComponent?.mainBody == null ||
+            ____vesselComponent?.VesselScienceRegionSituation.ResearchLocation == null)
         {
             return true;
         }
@@ -58,9 +63,8 @@ public class ExperimentBiomePauseFix : BaseFix
 
         bool safeToSkip = true;
         var newRegions = new List<string>();
-        for (int i = 0; i < ___dataScienceExperiment.ExperimentStandings.Count; i++)
+        foreach (var standing in ___dataScienceExperiment.ExperimentStandings)
         {
-            var standing = ___dataScienceExperiment.ExperimentStandings[i];
             if (standing.CurrentExperimentState == ExperimentState.RUNNING &&
                 !standing.RegionRequired &&
                 standing.ExperimentLocation.BodyName == newLocation.BodyName &&
@@ -75,7 +79,10 @@ public class ExperimentBiomePauseFix : BaseFix
 
         if (safeToSkip)
         {
-            Instance.Logger.LogInfo("Skipping PartComponentModule_ScienceExperiment.RefreshLocationsValidity - experiment is still valid.");
+            Instance.Logger.LogInfo(
+                "Skipping PartComponentModule_ScienceExperiment.RefreshLocationsValidity - experiment is still valid."
+            );
+
             ____currentLocation = newLocation;
             for (int i = 0; i < newRegions.Count; i++)
             {
