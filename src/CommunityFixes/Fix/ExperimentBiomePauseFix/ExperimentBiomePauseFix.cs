@@ -71,7 +71,7 @@ public class ExperimentBiomePauseFix : BaseFix
                 standing.ExperimentLocation.ScienceSituation == newLocation.ScienceSituation)
             {
                 newLocation.RequiresRegion = standing.RegionRequired;
-                newRegions.Append(newLocation.ScienceRegion);
+                newRegions.Add(newLocation.ScienceRegion);
                 continue;
             }
             safeToSkip = false;
