@@ -12,11 +12,11 @@ public class RevertAfterRecoveryFix : BaseFix
         HarmonyInstance.PatchAll(typeof(RevertAfterRecoveryFix));
     }
 
-    [HarmonyPatch(typeof(UIManager), nameof(UIManager.HandleButtonStates))]
+    [HarmonyPatch(typeof(UIManager), "HandleButtonStates")]
     [HarmonyPostfix]
     // ReSharper disable once InconsistentNaming
     private static void HandleButtonStatesPatch(UIManager __instance)
     {
-        __instance._escapeMenu.GetComponentInChildren<ESCMenuUIController>().UpdateRevertAvailability();
+        __instance.EscapeMenu.GetComponentInChildren<ESCMenuUIController>().UpdateRevertAvailability();
     }
 }
