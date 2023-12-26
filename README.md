@@ -12,6 +12,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **Suppress Transmissions Falsely Urgent Fix** by [schlosrat](https://github.com/schlosrat) - Suppresses unhelpful map view log messages.
 - **VAB Redo Tooltip Fix** by [coldrifting](https://github.com/coldrifting) - Fixes the VAB Redo button tooltip not being at the same height as the button.
 - **Revert After Recovery Fix** by [munix](https://github.com/jan-bures) - Fixes the Revert buttons being enabled after recovering a vessel.
+- **Experiment Biome Pause Fix** by [dmarcuse](https://github.com/dmarcuse) - Fixes experiments that don't care about biome pausing when the biome changes.
 
 ## Planned fixes
 To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/Bit-Studios/CommunityFixes/issues) on the project's GitHub.
