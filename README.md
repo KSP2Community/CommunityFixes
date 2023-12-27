@@ -27,11 +27,11 @@ To see what fixes are planned to be implemented, you can visit the [Issues page]
 ### Manual
 1. Download and extract [UITK for KSP 2](https://github.com/UitkForKsp2/UitkForKsp2/releases) into your game folder (this is a dependency of SpaceWarp).
 2. Download and extract [SpaceWarp](https://github.com/SpaceWarpDev/SpaceWarp/releases) into your game folder.
-2. Download and extract [Patch Manager](https://github.com/SpaceWarpDev/SpaceWarp/releases) into your game folder.
-3. Download and extract this mod into the game folder. If done correctly, you should have the following folder structure: `<KSP Folder>/BepInEx/plugins/CommunityFixes`.
+3. Download and extract [Patch Manager](https://github.com/SpaceWarpDev/SpaceWarp/releases) into your game folder.
+4. Download and extract this mod into the game folder. If done correctly, you should have the following folder structure: `<KSP Folder>/BepInEx/plugins/CommunityFixes`.
 
 ## Configuration
 If you want to toggle any of the included fixes off, you can do so in game: `Main menu` -> `Settings` -> `Mods` -> `Community Fixes`. The changes will apply after restarting the game.
 
-## Development wiki
+## Contributing
 If you'd like to contribute to this project, please take a look at [our wiki](https://github.com/Bit-Studios/CommunityFixes/wiki/Adding-your-fix).
