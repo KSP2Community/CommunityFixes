@@ -1,0 +1,5 @@
+:missions #KSP2Mission_Secondary_Pol_Flag > missionStages > _0 > ConditionSet > PropertyCondition {
+  isInput: false;
+  Inputstring: "";
+  TestWatchedstring: "Pol";
+}

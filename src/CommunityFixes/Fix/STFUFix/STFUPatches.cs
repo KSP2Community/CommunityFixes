@@ -5,6 +5,7 @@ using KSP.Map;
 using KSP.Sim.impl;
 
 namespace CommunityFixes.Fix.STFUFix;
+
 internal class STFUPatches
 {
     [HarmonyPatch(typeof(Map3DTrajectoryEvents), nameof(Map3DTrajectoryEvents.UpdateViewForOrbiter))]
@@ -18,7 +19,8 @@ internal class STFUPatches
             var activeVessel = GameManager.Instance?.Game?.ViewController?.GetActiveVehicle(true)?.GetSimVessel(true);
             var currentTarget = activeVessel?.TargetObject;
             if (!currentTarget.IsCelestialBody)
-                GlobalLog.Warn("GenerateEventsForVessel() called with vessel.Orbiter.patchedConicSolver == null. Events will not be updated");
+                GlobalLog.Warn(
+                    "GenerateEventsForVessel() called with vessel.Orbiter.patchedConicSolver == null. Events will not be updated");
         }
         else if (__instance._mapCamera?.UnityCamera == null)
         {
@@ -31,6 +33,7 @@ internal class STFUPatches
             __instance.UpdateViewForManeuverTrajectory(orbiter, globalId);
             __instance.UpdateViewForTargeter(orbiter.OrbitTargeter, orbiter, globalId);
         }
+
         return false;
     }
 }
