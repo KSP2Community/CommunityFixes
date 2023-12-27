@@ -9,18 +9,19 @@ namespace CommunityFixes.Fix.ExperimentBiomePauseFix;
 [Fix("Fix experiments pausing when switching biome for scenarios where biome is irrelevant")]
 public class ExperimentBiomePauseFix : BaseFix
 {
-    public static ExperimentBiomePauseFix Instance;
+    private static ExperimentBiomePauseFix _instance;
 
     // This fix makes assumptions about the game's code and reads/writes private state, which can end up in save files.
     // In order to avoid accidentally breaking anything, we only apply the patch to known-broken versions of the game.
-    public static readonly HashSet<string> KnownBrokenVersions = new() { "0.2.0.0.30291" };
-    public static string GameVersion = typeof(VersionID)
+    private static readonly HashSet<string> KnownBrokenVersions = new() { "0.2.0.0.30291" };
+
+    private static readonly string GameVersion = typeof(VersionID)
         .GetField("VERSION_TEXT", BindingFlags.Static | BindingFlags.Public)
         ?.GetValue(null) as string;
 
     public override void OnInitialized()
     {
-        Instance = this;
+        _instance = this;
         if (KnownBrokenVersions.Contains(GameVersion))
         {
             HarmonyInstance.PatchAll(typeof(ExperimentBiomePauseFix));
@@ -37,7 +38,10 @@ public class ExperimentBiomePauseFix : BaseFix
     // of the experiment are unchanged.
     // To avoid breaking things when we skip RefreshLocationsValidity, we also update some private state that the method
     // is responsible for when skipping it.
-    [HarmonyPatch(typeof(PartComponentModule_ScienceExperiment), "RefreshLocationsValidity")]
+    [HarmonyPatch(
+        typeof(PartComponentModule_ScienceExperiment),
+        nameof(PartComponentModule_ScienceExperiment.RefreshLocationsValidity)
+    )]
     [HarmonyPrefix]
     public static bool RefreshLocationsValidityPrefix(
         // ReSharper disable once InconsistentNaming
@@ -74,12 +78,13 @@ public class ExperimentBiomePauseFix : BaseFix
                 newRegions.Add(newLocation.ScienceRegion);
                 continue;
             }
+
             safeToSkip = false;
         }
 
         if (safeToSkip)
         {
-            Instance.Logger.LogInfo(
+            _instance.Logger.LogInfo(
                 "Skipping PartComponentModule_ScienceExperiment.RefreshLocationsValidity - experiment is still valid."
             );
 
@@ -89,6 +94,7 @@ public class ExperimentBiomePauseFix : BaseFix
                 ___dataScienceExperiment.ExperimentStandings[i].ExperimentLocation.SetScienceRegion(newRegions[i]);
             }
         }
+
         return !safeToSkip;
     }
 }
