@@ -16,7 +16,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
-    internal new static CommunityFixesConfig Config;
+    internal new static Configuration Config;
 
     private readonly List<BaseFix> _fixes = new();
 
@@ -33,7 +33,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
             return;
         }
 
-        Config = new CommunityFixesConfig(base.Config);
+        Config = new Configuration(base.Config);
 
         foreach (var type in types)
         {
@@ -68,7 +68,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
     {
         var fixName = GetFixName(type);
 
-        if (!Config.LoadConfig(type, fixName))
+        if (!Config.IsFixEnabled(type, fixName))
         {
             return false;
         }
