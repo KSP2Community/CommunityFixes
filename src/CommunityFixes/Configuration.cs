@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using CommunityFixes.Fix;
 
 namespace CommunityFixes;
 
@@ -22,9 +23,8 @@ internal class Configuration
     /// Gets the toggle value for a fix class.
     /// </summary>
     /// <param name="type">Type of the fix class.</param>
-    /// <param name="name">Name of the fix class.</param>
-    /// <returns></returns>
-    public bool IsFixEnabled(Type type, string name)
+    /// <returns>The toggle value for the fix class.</returns>
+    public bool IsFixEnabled(Type type)
     {
         // If the toggle value for a fix class is already defined, we return it
         if (_fixesEnabled.TryGetValue(type, out var isEnabled))
@@ -33,7 +33,8 @@ internal class Configuration
         }
 
         // Otherwise create a new config entry for the fix class and return its default value (true)
-        var configEntry = _file.Bind(TogglesSection, type.Name, true, name);
+        var metadata = FixAttribute.GetForType(type);
+        var configEntry = _file.Bind(TogglesSection, type.Name, true, metadata.Name);
         _fixesEnabled.Add(type, configEntry);
         return configEntry.Value;
     }
