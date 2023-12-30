@@ -11,7 +11,7 @@ public class VesselLandedStateFix: BaseFix
         if (gameStateConfiguration is { IsFlightMode: true })
         {
             var vessel = Game?.ViewController?.GetActiveSimVessel();
-            if (vessel is { Situation: VesselSituations.Landed, AltitudeFromTerrain: > 50, SrfSpeedMagnitude: > 5 })
+            if (vessel is { Situation: VesselSituations.Landed, AltitudeFromSurface: > 50, SrfSpeedMagnitude: > 5 })
             {
                 vessel.Landed = false;
             }
