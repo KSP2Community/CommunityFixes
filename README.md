@@ -15,6 +15,8 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **Revert After Recovery Fix** by [munix](https://github.com/jan-bures) - Fixes the Revert buttons being enabled after recovering a vessel.
 - **Experiment Biome Pause Fix** by [dmarcuse](https://github.com/dmarcuse) - Fixes experiments that don't care about biome pausing when the biome changes.
 - **Stock Mission Fix** by [Cheese](https://github.com/cheese3660) - Fixes the incorrect completion conditions of the mission _Second Dibs: Gold Edition_.
+- **Resource Manager UI Fix** by [munix](https://github.com/jan-bures) - Fixes the Resource Manager bug where moving a tank from the right pane back to the left pane caused it to duplicate.
+- **Decoupled Craft Name Fix** by [munix](https://github.com/jan-bures) - Decoupled and docked/undocked vessels get names based on the original vessels instead of "Default Name" and "(Combined)".
 
 ## Planned fixes
 To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/Bit-Studios/CommunityFixes/issues) on the project's GitHub.

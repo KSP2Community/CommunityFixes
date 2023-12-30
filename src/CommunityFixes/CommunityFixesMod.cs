@@ -16,7 +16,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     private static readonly Assembly Assembly = typeof(CommunityFixesMod).Assembly;
-    internal new static CommunityFixesConfig Config;
+    internal new static Configuration Config;
 
     private readonly List<BaseFix> _fixes = new();
 
@@ -33,11 +33,11 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
             return;
         }
 
-        Config = new CommunityFixesConfig(base.Config);
+        Config = new Configuration(base.Config);
 
         foreach (var type in types)
         {
-            if (type.IsAbstract || !HasFixType(type))
+            if (type.IsAbstract || !type.IsSubclassOf(typeof(BaseFix)))
             {
                 continue;
             }
@@ -66,9 +66,7 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
 
     private bool LoadFix(Type type)
     {
-        var fixName = GetFixName(type);
-
-        if (!Config.LoadConfig(type, fixName))
+        if (!Config.IsFixEnabled(type))
         {
             return false;
         }
@@ -83,41 +81,5 @@ public class CommunityFixesMod : BaseSpaceWarpPlugin
         _fixes.Add(fix);
 
         return true;
-    }
-
-    private static string GetFixName(Type type)
-    {
-        var attributes = Attribute.GetCustomAttributes(type);
-        foreach (var attribute in attributes)
-        {
-            if (attribute is FixAttribute fix)
-            {
-                return fix.Name;
-            }
-        }
-
-        throw new Exception($"The attribute {typeof(FixAttribute).FullName} has to be declared on a fix class.");
-    }
-
-    private static bool HasFixType(Type type)
-    {
-        if (type == null)
-        {
-            return false;
-        }
-
-        // return all inherited types
-        var currentBaseType = type.BaseType;
-        while (currentBaseType != null)
-        {
-            if (currentBaseType == typeof(BaseFix))
-            {
-                return true;
-            }
-
-            currentBaseType = currentBaseType.BaseType;
-        }
-
-        return false;
     }
 }
