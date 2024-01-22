@@ -19,7 +19,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **Decoupled Craft Name Fix** by [munix](https://github.com/jan-bures) - Decoupled and docked/undocked vessels get names based on the original vessels instead of "Default Name" and "(Combined)".
 
 ## Planned fixes
-To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/Bit-Studios/CommunityFixes/issues) on the project's GitHub.
+To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/KSP2Community/CommunityFixes/issues) on the project's GitHub.
 
 ## Installation
 
@@ -36,4 +36,4 @@ To see what fixes are planned to be implemented, you can visit the [Issues page]
 If you want to toggle any of the included fixes off, you can do so in game: `Main menu` -> `Settings` -> `Mods` -> `Community Fixes`. The changes will apply after restarting the game.
 
 ## Contributing
-If you'd like to contribute to this project, please take a look at [our wiki](https://github.com/Bit-Studios/CommunityFixes/wiki/Adding-your-fix).
+If you'd like to contribute to this project, please take a look at [our wiki](https://github.com/KSP2Community/CommunityFixes/wiki/Adding-your-fix).
