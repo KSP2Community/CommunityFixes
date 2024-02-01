@@ -1,0 +1,3 @@
+:missions #KSP2Mission_Secondary_Ike_LandingCrewed > missionStages > _0 > ConditionSet > PropertyCondition {
+  RequireCurrentValue: true;
+}
