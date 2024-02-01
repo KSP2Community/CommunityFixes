@@ -2,19 +2,17 @@
 This project aims to bring together community bug fixes for Kerbal Space Program 2 in one centralized place.
 
 ## Compatibility
-- Tested with Kerbal Space Program 2 v0.2.0.0.30291
+- Tested with Kerbal Space Program 2 v0.2.1.0.30833
 - Requires **[SpaceWarp 1.6.0+](https://github.com/SpaceWarpDev/SpaceWarp/releases/)**
 - Requires **[Patch Manager 0.6+](https://github.com/KSP2Community/PatchManager/releases/)**
 
 ## Implemented fixes
 - **KSP 2 Save Fix** by [jayouimet](https://github.com/jayouimet) - Replaces the Control Owner Part to the first available Command module or to the Root part if not found when it is set to null.
 - **Vessel Landed State Fix** by [munix](https://github.com/jan-bures) - Checks if the vessel's state is Landed when not actually near the ground and resets it. Should fix [this persistent bug](https://forum.kerbalspaceprogram.com/topic/220260-incorrect-landed-state-causing-lack-of-trajectory-lines/).
-- **Velocity Display Precision Fix** by [arthomnix](https://github.com/arthomnix) - Fixes the digit after the decimal point on the navball velocity display always being zero at velocities above 100m/s.
 - **Suppress Transmissions Falsely Urgent Fix** by [schlosrat](https://github.com/schlosrat) - Suppresses unhelpful map view log messages.
 - **VAB Redo Tooltip Fix** by [coldrifting](https://github.com/coldrifting) - Fixes the VAB Redo button tooltip not being at the same height as the button.
 - **Revert After Recovery Fix** by [munix](https://github.com/jan-bures) - Fixes the Revert buttons being enabled after recovering a vessel.
-- **Experiment Biome Pause Fix** by [dmarcuse](https://github.com/dmarcuse) - Fixes experiments that don't care about biome pausing when the biome changes.
-- **Stock Mission Fix** by [Cheese](https://github.com/cheese3660) - Fixes the incorrect completion conditions of the mission _Second Dibs: Gold Edition_.
+- **Stock Mission Fix** by [Cheese](https://github.com/cheese3660) - Fixes the incorrect completion conditions of some stock missions.
 - **Resource Manager UI Fix** by [munix](https://github.com/jan-bures) - Fixes the Resource Manager bug where moving a tank from the right pane back to the left pane caused it to duplicate.
 - **Decoupled Craft Name Fix** by [munix](https://github.com/jan-bures) - Decoupled and docked/undocked vessels get names based on the original vessels instead of "Default Name" and "(Combined)".
 
