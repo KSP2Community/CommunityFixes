@@ -3,8 +3,8 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 
 ## Compatibility
 - Tested with Kerbal Space Program 2 v0.2.1.0.30833
-- Requires **[SpaceWarp 1.6.0+](https://github.com/SpaceWarpDev/SpaceWarp/releases/)**
-- Requires **[Patch Manager 0.6+](https://github.com/KSP2Community/PatchManager/releases/)**
+- Requires **[SpaceWarp 1.9.0+](https://github.com/SpaceWarpDev/SpaceWarp/releases/)**
+- Requires **[Patch Manager 0.9.3+](https://github.com/KSP2Community/PatchManager/releases/)**
 
 ## Implemented fixes
 - **KSP 2 Save Fix** by [jayouimet](https://github.com/jayouimet) - Replaces the Control Owner Part to the first available Command module or to the Root part if not found when it is set to null.
