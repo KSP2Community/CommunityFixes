@@ -15,6 +15,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **Stock Mission Fix** by [Cheese](https://github.com/cheese3660) - Fixes the incorrect completion conditions of some stock missions.
 - **Resource Manager UI Fix** by [munix](https://github.com/jan-bures) - Fixes the Resource Manager bug where moving a tank from the right pane back to the left pane caused it to duplicate.
 - **Decoupled Craft Name Fix** by [munix](https://github.com/jan-bures) - Decoupled and docked/undocked vessels get names based on the original vessels instead of "Default Name" and "(Combined)".
+- **Time Warp Thrust Fix** by [SunSerega](https://github.com/SunSerega) - Fixes the bug where thrust under time warp was sometimes not working despite draining fuel.
 
 ## Planned fixes
 To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/KSP2Community/CommunityFixes/issues) on the project's GitHub.
