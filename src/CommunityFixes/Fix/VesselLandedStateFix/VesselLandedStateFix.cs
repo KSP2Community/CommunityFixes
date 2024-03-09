@@ -1,6 +1,6 @@
 using KSP.Sim.impl;
 
-namespace CommunityFixes.Fix.VesselLandedState;
+namespace CommunityFixes.Fix.VesselLandedStateFix;
 
 [Fix("Vessel Landed State")]
 public class VesselLandedStateFix: BaseFix
