@@ -1,5 +1,14 @@
 name: Upload release
 
+env:
+  SPACEDOCK_MOD_ID: 3301
+  SPACEDOCK_MOD_URL: "https://spacedock.info/mod/3301/Community%20Fixes#changelog" # The URL of your mod on SpaceDock"
+  FORUM_TOPIC_URL: "https://forum.kerbalspaceprogram.com/topic/..." # The URL of your mod's forum topic
+  FORUM_TOPIC_TITLE: "Community Fixes [v{version} for KSP2 v{ksp2_version}]" # The title of your mod's forum topic
+  DISCORD_MOD_THREAD_ID: "1183537268565229648" # The thread ID of the mod's Discord post
+  DISCORD_USERNAME: "Community Fixes" # The username of the bot that will post to Discord
+  DISCORD_AVATAR_URL: "https://i.imgur.com/M4SUSaf.png" # The Image URL of the bot's avatar. Not required.
+
 on:
   release:
     types: [ "published" ]
@@ -11,23 +20,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Download NuGet
         id: download-nuget
-        run: |
-          sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+        run: sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
       - name: Install jq
         uses: dcarbone/install-jq-action@v2.1.0
 
       - name: Build the solution
+        run: dotnet build "CommunityFixes.sln" -c Release
+
+      - name: Extract current version
+        id: get-version
         run: |
           version=$(jq -r '.version' plugin_template/swinfo.json)
           echo "Version is $version"
-          dotnet build "CommunityFixes.sln" -c Release
+          echo "version=$version" >> $GITHUB_ENV
           echo "release_filename=CommunityFixes-$version.zip" >> $GITHUB_ENV
           echo "zip=$(ls -1 dist/CommunityFixes-*.zip | head -n 1)" >> $GITHUB_ENV
           echo "upload_url=$(wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq '.[0].upload_url' | tr -d \")" >> $GITHUB_ENV
+          wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq -r '.[0].body' > ./changelog.md
 
       - name: Upload zip to release
         uses: shogo82148/actions-upload-release-asset@v1.7.2
@@ -38,3 +53,48 @@ jobs:
           asset_path: ${{ env.zip }}
           asset_name: ${{ env.release_filename }}
           asset_content_type: application/zip
+
+      - name: Add Mask
+        run: echo "::add-mask::${{ secrets.SPACEDOCK_PASSWORD }}"
+
+      - name: Update mod on SpaceDock
+        uses: KSP2Community/spacedock-upload@v1.0.0
+        with:
+          username: ${{ secrets.SPACEDOCK_USER }}
+          password: ${{ secrets.SPACEDOCK_PASSWORD }}
+          game_id: 22407
+          mod_id: ${{ env.SPACEDOCK_MOD_ID }}
+          version: ${{ env.version }}
+          zipball: ${{ env.zip }}
+          changelog: ./changelog.md
+
+      - name: Update Forum topic
+        uses: Kerbalight/ksp2-forum-post-action@latest
+        with:
+          username: ${{ secrets.KSP_FORUM_USERNAME }}
+          password: ${{ secrets.KSP_FORUM_PASSWORD }}
+          forum_topic_url: ${{ env.FORUM_TOPIC_URL }}
+          forum_topic_title: ${{ env.FORUM_TOPIC_TITLE }}
+          spacedock_url: ${{ env.SPACEDOCK_MOD_URL}}
+          version: ${{ env.version }}
+          changelog: ./changelog.md
+
+      - name: Prepare message for Discord
+        shell: bash
+        run: |
+          echo -e "## Release v${version}\n" > ./content.md
+          cat ./changelog.md >> ./content.md
+          {
+            echo 'discord_message<<EOF'
+            cat ./content.md
+            echo EOF
+          } >> "$GITHUB_ENV"
+
+      - name: Publish update to Discord
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_KMS_WEBHOOK_URL }}
+          content: ${{ env.discord_message }}
+          thread-id: ${{ env.DISCORD_MOD_THREAD_ID }}
+          username: ${{ env.DISCORD_USERNAME }}
+          avatar-url: ${{ env.DISCORD_AVATAR_URL }}
