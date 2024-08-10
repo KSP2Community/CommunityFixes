@@ -29,8 +29,8 @@ public class DecoupledCraftNameFix : BaseFix
 
     private void HandleUndockMessage(VesselUndockedMessage undockMessage)
     {
-        VesselComponent vessel1 = undockMessage.VesselOne?.Model;
-        VesselComponent vessel2 = undockMessage.VesselTwo?.Model;
+        VesselComponent vessel1 = undockMessage.VesselOne == null ? null : undockMessage.VesselOne.Model;
+        VesselComponent vessel2 = undockMessage.VesselTwo == null ? null : undockMessage.VesselTwo.Model;
 
         HandleSeparationEvent(vessel1, vessel2);
     }
