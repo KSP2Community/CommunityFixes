@@ -15,14 +15,14 @@
     {
       "id": "com.github.x606.spacewarp",
       "version": {
-        "min": "1.9.0",
+        "min": "1.9.5",
         "max": "*"
       }
     },
     {
       "id": "PatchManager",
       "version": {
-        "min": "0.9.3",
+        "min": "0.11.1",
         "max": "*"
       }
     }
