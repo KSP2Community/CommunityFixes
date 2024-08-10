@@ -3,7 +3,7 @@ using KSP.Game;
 using System.Globalization;
 using UnityEngine.UI;
 
-namespace CommunityFixes.Fix.STFUFix;
+namespace CommunityFixes.Fix.SaveLoadDateTimeFix;
 
 internal class SaveLoadDateTimeFix_Patch
 {

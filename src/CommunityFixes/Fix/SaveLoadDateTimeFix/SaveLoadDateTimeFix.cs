@@ -1,4 +1,4 @@
-﻿namespace CommunityFixes.Fix.STFUFix;
+﻿namespace CommunityFixes.Fix.SaveLoadDateTimeFix;
 
 [Fix("Save/Load Date/Time Fix")]
 public class SaveLoadDateTimeFix : BaseFix
