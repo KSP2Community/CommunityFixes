@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
 using KSP.Game;
-using KSP.Logging;
-using System.Globalization;
 using UnityEngine.UI;
 
 namespace CommunityFixes.Fix.SaveLoadDateTimeFix;
