@@ -17,6 +17,7 @@ This project aims to bring together community bug fixes for Kerbal Space Program
 - **Decoupled Craft Name Fix** by [munix](https://github.com/jan-bures) - Decoupled and docked/undocked vessels get names based on the original vessels instead of "Default Name" and "(Combined)".
 - **Time Warp Thrust Fix** by [SunSerega](https://github.com/SunSerega) - Fixes the bug where thrust under time warp was sometimes not working despite draining fuel.
 - **Save/Load DateTime Fix** by [bizzehdee](https://github.com/bizzehdee) - Displays dates and times of save files in the correct locale format.
+- **Tracking Station Debris Name Fix** by [polo](https://github.com/pasalvetti) - Replaces the object's guid with a human-readable name: "Debris of [ship name]".
 
 ## Planned fixes
 To see what fixes are planned to be implemented, you can visit the [Issues page](https://github.com/KSP2Community/CommunityFixes/issues) on the project's GitHub.
