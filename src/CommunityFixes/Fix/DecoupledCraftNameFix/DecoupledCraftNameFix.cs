@@ -39,9 +39,10 @@ public class DecoupledCraftNameFix : BaseFix
     {
         Logger.LogDebug($"Separated: {vessel1?.Name}, {vessel2?.Name}");
 
-        if (vessel2 is not { Name: var newName } ||
+        if ((vessel2 is not { Name: var newName } ||
             !newName.StartsWith("Default Name") ||
-            string.IsNullOrEmpty(vessel1?.Name))
+            string.IsNullOrEmpty(vessel1?.Name)) &&
+            vessel1.Name!=vessel2.Name)
         {
             return;
         }
