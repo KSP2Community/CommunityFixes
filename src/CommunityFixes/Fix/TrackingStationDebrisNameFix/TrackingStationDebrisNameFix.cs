@@ -1,10 +1,6 @@
 ﻿using HarmonyLib;
 using KSP.Map;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
 using KSP.Sim.impl;
-using Castle.Components.DictionaryAdapter.Xml;
-using static KSP.Api.UIDataPropertyStrings.View;
 
 namespace CommunityFixes.Fix.TrackingStationDebrisNameFix
 {
