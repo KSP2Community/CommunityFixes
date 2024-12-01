@@ -1,0 +1,44 @@
+:parts #heatshield_2v_inflatable {
+    resourceContainers: +[
+      {
+        name: "Ablator",
+        capacityUnits: 0.8,
+        initialUnits: 0.8,
+        NonStageable: false
+      }
+    ];
+    +Module_Heatshield {
+        +Data_Heatshield {
+            IsDeployed: false;
+            IsAblating: false;
+            HasEnoughResources: false;
+            AblatorRatio: 1.0;
+            AblatorTonnesPerSecond: 1.0;
+            FluxRemoved: 0.0;
+            ShieldingDirectionScale: 1.0;
+            IsAblatorExhausted: false;
+            requiredResources: [
+                {
+                  Rate: 0.5,
+                  ResourceName: "Ablator",
+                  AcceptanceThreshold: 0.001
+                }
+              ];
+            AblationTempThreshold: 1000.0;
+            AblationMaximumOverThreshold: 50.0;
+            PyrolysisLossFactor: 0.00000016;
+            ShieldingScale: 1.0;
+            ShieldingDirection: {
+                x: 0.0,
+                y: -1.0,
+                z: 0.0
+            };
+            DisabledWhenRetracted: true;
+            UseChar: true;
+            CharMaterialName: "heatshield_2v_inflatable";
+            CharMin: 0.0;
+            CharMax: 1.0;
+            AblatorMaxValue: 1.0;
+        }
+    }
+}
